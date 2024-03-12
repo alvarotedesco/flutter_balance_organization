@@ -3,26 +3,22 @@ import 'package:get/get.dart';
 
 import 'home_page_controller.dart';
 
-class HomePage extends GetView<HomePageController> {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const MyHomePage();
+  State<HomePage> createState() => HomePageState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePageState extends State<HomePage> {
+  final controller = Get.put(HomePageController());
 
-  @override
-  State<MyHomePage> createState() => _MyHomePage();
-}
+  static const TextStyle optionStyle = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+  );
 
-class _MyHomePage extends State<MyHomePage> {
-  int _selectIndexPage = 0;
-
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold,);
-
-  static const List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = const <Widget>[
     Text(
       'Página inicial',
       style: optionStyle,
@@ -33,27 +29,31 @@ class _MyHomePage extends State<MyHomePage> {
     ),
   ];
 
-  void _changePage(int indexPage) {
-    setState(() {
-      _selectIndexPage = indexPage;
-    });
-  }
-
-  List<BottomNavigationBarItem> _bottomNavigationBarItens() => const [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início',),
-    BottomNavigationBarItem(icon: Icon(Icons.app_registration), label: 'Cadastros',),
+  final List<BottomNavigationBarItem> _bottomNavigationBarItens = const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Início',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.app_registration),
+      label: 'Cadastros',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(_selectIndexPage),),
       bottomNavigationBar: BottomNavigationBar(
-        items: _bottomNavigationBarItens(),
-        currentIndex: _selectIndexPage,
+        items: _bottomNavigationBarItens,
+        currentIndex: controller.selectedIndexPage,
         selectedItemColor: Colors.red,
-        onTap: _changePage,
+        onTap: controller.changePage,
+      ),
+      body: Center(
+        child: Obx(
+          () => _widgetOptions.elementAt(controller.selectedIndexPage),
         ),
+      ),
     );
   }
 }
