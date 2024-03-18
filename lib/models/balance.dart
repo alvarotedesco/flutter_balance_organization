@@ -29,5 +29,5 @@ class Balance {
 
   factory Balance.fromDynamic(dynamic source) => source is Balance
       ? source
-      : const Balance().copyWith(fromDynamic(source));
+      : const Balance().copyWith(Utils.fromDynamic(source));
 }

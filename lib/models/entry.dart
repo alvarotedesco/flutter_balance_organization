@@ -53,5 +53,5 @@ class Entry {
 
   factory Entry.fromDynamic(dynamic source) => source is Entry
       ? source
-      : Entry(entryDate: DateTime.now()).copyWith(fromDynamic(source));
+      : Entry(entryDate: DateTime.now()).copyWith(Utils.fromDynamic(source));
 }
