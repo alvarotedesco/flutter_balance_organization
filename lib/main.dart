@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app_pages.dart';
-import 'app_routes.dart';
+import 'shared/app_pages.dart';
+import 'shared/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
