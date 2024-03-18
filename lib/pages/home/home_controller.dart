@@ -1,13 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_balance_organization/pages/dashboard/dashboard_page.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final RxInt _selectedIndexPage = 0.obs;
-  
-  int get selectedIndexPage => _selectedIndexPage.value;
+  final RxInt selectedIndexPage = 0.obs;
 
-  void changePage(int indexPage) {
-    printInfo(info: 'Index clicado: $indexPage');
-
-    _selectedIndexPage.value = indexPage;
-  }
+  final List<Widget> pages = [
+    const DashboardPage(),
+    const Text('Cadastros'),
+    const Text('Importar/Exportar'),
+  ];
 }
