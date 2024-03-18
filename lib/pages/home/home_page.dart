@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_balance_organization/shared/app_text_style.dart';
 import 'package:get/get.dart';
 
-import 'home_page_controller.dart';
+import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,21 +12,16 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final controller = Get.put(HomePageController());
-
-  static const TextStyle optionStyle = TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.bold,
-  );
+  final controller = Get.put(HomeController());
 
   final List<Widget> _widgetOptions = const <Widget>[
     Text(
       'Página inicial',
-      style: optionStyle,
+      style: AppTextStyle.h3B,
     ),
     Text(
       'Página de cadastro',
-      style: optionStyle,
+      style: AppTextStyle.h3B,
     ),
   ];
 
